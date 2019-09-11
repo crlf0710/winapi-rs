@@ -18,7 +18,16 @@ extern crate std;
 
 /// Hack for exported macros
 #[doc(hidden)]
+#[cfg(not(feature = "rustc-dep-of-std"))]
 pub extern crate core as _core;
+
+#[doc(hidden)]
+#[cfg(feature = "rustc-dep-of-std")]
+pub extern crate rustc_std_workspace_core as core;
+
+#[doc(hidden)]
+#[cfg(feature = "rustc-dep-of-std")]
+pub extern crate rustc_std_workspace_core as _core;
 
 // Modules
 #[macro_use]

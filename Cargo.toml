@@ -20,12 +20,17 @@ default-target = "x86_64-pc-windows-msvc"
 travis-ci = { repository = "retep998/winapi-rs", branch = "0.3" }
 appveyor = { repository = "retep998/winapi-rs", branch = "0.3", service = "github" }
 
+[dependencies]
+rustc-std-workspace-core = { version = "1.0", optional = true }
+rustc-std-workspace-std = { version = "1.0", optional = true }
+
 [target.i686-pc-windows-gnu.dependencies]
 winapi-i686-pc-windows-gnu = { version = "0.4", path = "i686" }
 [target.x86_64-pc-windows-gnu.dependencies]
 winapi-x86_64-pc-windows-gnu = { version = "0.4", path = "x86_64" }
 
 [features]
+rustc-dep-of-std = ['rustc-std-workspace-core', 'rustc-std-workspace-std', 'std']
 debug = ["impl-debug"]
 everything = []
 impl-debug = []
